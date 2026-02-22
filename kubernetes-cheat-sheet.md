@@ -18,6 +18,11 @@
 * [tutorial external](https://academy.level-up.one/p/learn-kubernetes-from-a-devops-guru-kubernetes-docker)
 * [interactive course](https://www.katacoda.com/courses/kubernetes)
 * [interactive course](https://www.katacoda.com/contino/courses/kubernetes)
+* books:
+  * Kubernetes Up & Running
+  * Cloud Native DevOps with Kubernetes
+  * Kubernetes Patterns
+  * Programming Kubernetes
 
 ## local playgrounds
 * [kind](#kind)
