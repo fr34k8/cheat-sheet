@@ -118,16 +118,16 @@ group3(( api
 
 
 subgraph k8s[kubernetes]
-    worker   --> node
-    controlplane[controlplane:
-                 etcd
-                 controller
-                 scheduler
-                 api server]   --> node
+    worker-node[WorkerNode]   --extends--> node
+    controlplane[**ControlPlane:**
+                 * etcd
+                 * control-manager
+                 * scheduler
+                 * api-server]   --extends--> node
 end
 
-POD[POD:
-    ip/hostname] --o worker
+POD[POD WorkerNode:
+    ip/hostname] 
 kubelet --o POD
 kubeproxy[kube 
           proxy] --o POD
@@ -148,7 +148,7 @@ style node fill:green,stroke:#82823c,color:black
 style cloud fill:green,stroke:#82823c,color:black
 style baremetal fill:green,stroke:#82823c,color:black
 
-style worker fill:cyan,color:black
+style worker-node fill:cyan,color:black
 style controlplane fill:cyan,color:black
 
 style group1 fill:cyan,color:black
@@ -162,7 +162,15 @@ style kubeproxy fill:cyan,color:black
 style customdocker1 fill: #0e98ba, color:black
 style customdocker2 fill: #0e98ba, color:black
 ```
-
+Legend:
+* **ControlPlane:**
+  * **api-server** -  main communication hub, it's only application that talks to etcd
+  * **etcd** - key-value storage that acts as the source of truth for cluster state
+  * **kube-scheduler** - schedules pods to run on a specific node
+  * **kube-controller-manager** - runs control loops to realign the actual state with the desired state
+* **WorkerNode**:
+  * **kubelet** - manages pods, communicate with api-server
+  * **kube-proxy** - manages iptables of service ( does TCP/UDP forwarding )
 ---
 ## [kind](https://kind.sigs.k8s.io/)
 
@@ -624,6 +632,30 @@ kubectl describe quota/object-quota --namespace my-own-namespace
 kubectl describe {pod-name} limits 
 kubectl describe {pod-name} limits --namespace my-own-namespace
 ```
+
+## resources
+when to use
+### Pod
+testing, bug hunting
+
+### Deployment
+apps wich do not require persistence or apps with should stay alive
+
+### ReplicaSet
+normally management by deployments, never to be used as standalone ( except CKA exam )
+
+### StatefulSet
+apps with unique name, persistence storage ( reusable by other apps ) like Redis, Mongo
+
+### DaemonSet
+if container needs to be run on every or a specific node 
+
+### Job
+function or app which runs only once ( fire and forget )
+
+### CronJob
+run job by timer ( regularly )
+
 
 ## users
 * normal user
