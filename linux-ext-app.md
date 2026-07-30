@@ -230,6 +230,64 @@ http-server
 ```
 
 ## Utilities 
+
+### ssh protection - Fail2ban
+#### **1. Installation & Service Management**
+
+* **Install (Debian/Ubuntu):** `sudo apt install fail2ban`
+* **Install (RHEL/Fedora/Rocky):** `sudo dnf install fail2ban`
+* **Start & Enable:** `sudo systemctl enable --now fail2ban`
+* **Check Status:** `sudo systemctl status fail2ban`
+
+#### **2. Configuration Best Practices**
+
+* **Never edit** `/etc/fail2ban/jail.conf` directly (it gets overwritten on updates).
+* **Create custom overrides** in `/etc/fail2ban/jail.local` or drop files inside `/etc/fail2ban/jail.d/`.
+
+**Recommended `[DEFAULT]` Settings:**
+
+```ini
+[DEFAULT]
+bantime = 1h
+findtime = 10m
+maxretry = 5
+ignoreip = 127.0.0.1/8 ::1 YOUR.IP.ADDRESS
+dbfile = /var/lib/fail2ban/fail2ban.sqlite3
+dbpurgeage = 7d
+```
+
+#### **3. Essential Jails**
+
+* **SSH Jail:**
+```ini
+[sshd]
+enabled = true
+port = ssh
+maxretry = 3
+bantime = 1h
+```
+
+* **Recidive Jail (Catches repeat offenders):**
+```ini
+[recidive]
+enabled = true
+logpath = /var/log/fail2ban.log
+bantime = 1w
+findtime = 1d
+maxretry = 5
+```
+
+#### **4. Most-Used Commands (`fail2ban-client`)**
+
+* **List all active jails:** `sudo fail2ban-client status`
+* **Check specific jail status (e.g., SSH):** `sudo fail2ban-client status sshd`
+* **Manually ban an IP:** `sudo fail2ban-client set sshd banip 1.2.3.4`
+* **Unban an IP (if you lock yourself out):** `sudo fail2ban-client set sshd unbanip 1.2.3.4`
+* **Reload configuration changes:** `sudo fail2ban-client reload`
+* **Test a filter regex:** `sudo fail2ban-regex /var/log/auth.log /etc/fail2ban/filter.d/sshd.conf`
+* **View live ban logs:** `sudo tail -f /var/log/fail2ban.log`
+
+
 ### [web-based terminal](https://github.com/butlerx/wetty)
 terminal window in browser
 
@@ -1093,15 +1151,16 @@ sudo ls -la /media/${USER}/${DISK_ID}/boot/efi/
 # sudo rm -rf /media/${USER}/${DISK_ID}/boot/efi/bootloader-efi
 ```
 
-## [mail url rules mailto](https://yoast.com/developer-blog/guide-mailto-links/)
+## mail
+### [mail url rules mailto](https://yoast.com/developer-blog/guide-mailto-links/)
 | mailto:  |to set the recipient, or recipients, separate with comma                                                                         |
 | &cc=     |to set the CC recipient(s)                                                                                                       |
 | &bcc=    |to set the BCC recipient(s)                                                                                                      |
 | &subject=|to set the email subject, URL encode for longer sentences, so replace spaces with %20, etc.                                      |
 | &body=   |to set the body of the message, you can add entire sentences here, including line breaks. Line breaks should be converted to %0A.|
 
-## mail console client
-### aerc
+### mail console client
+#### aerc
 ```sh
 ## create application password: https://myaccount.google.com/u/1/apppasswords
 ## vim ~/.config/aerc/accounts.conf
@@ -1112,7 +1171,7 @@ sudo ls -la /media/${USER}/${DISK_ID}/boot/efi/
 sudo apt install aerc 
 ```
 
-### mutt
+#### mutt
 ```sh
 # aerc; alpine, neomutt
 # sudo apt-get install alpine
@@ -1123,7 +1182,7 @@ mkdir -p "~/.mutt/cache/bodies"
 
 ```
 
-#### mutt setup pop3
+##### mutt setup pop3
 ```sh
 echo "
 set pop_host = $POP3_HOST
@@ -1135,7 +1194,7 @@ set realname = $POP3_USER_TITLE
 " > ~/.muttrc
 ```
 
-### mutt setup imap
+##### mutt setup imap
 ```sh
 echo "
 set imap_user = $IMAP_USER
