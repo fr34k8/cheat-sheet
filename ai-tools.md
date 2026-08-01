@@ -41,9 +41,14 @@ copilot
 ### [antigraviti cli](https://antigravity.google/download)
 ```sh
 curl -fsSL https://antigravity.google/cli/install.sh | bash
+
+agy
+```
+```sh
+alias gemini=agy
 ```
 
-### [gemini cli](https://geminicli.com/docs/get-started/installation/)
+### ~~[gemini cli obsolete](https://geminicli.com/docs/get-started/installation/)~~
 ```sh
 # via NPM package 
 sudo npm install -g @google/gemini-cli
@@ -54,6 +59,9 @@ sudo npm remove -g @google/gemini-cli
 sudo snap install gemini-cli
 
 gemini
+
+# authentication via cli using token
+NO_BROWSER=true gemini auth login
 ```
 ```
 /chat share session-name.md
