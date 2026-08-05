@@ -1,6 +1,6 @@
 # Linux applications
 
-## useful links:
+## useful links
 * [list of self hosted application instead of SoftwareAsAService in Cloud](https://github.com/awesome-selfhosted/awesome-selfhosted)
 * [gnu applications](https://www.gnu.org/software/)
 * [how to install ubuntu on USB stick](https://ubuntuhandbook.org/index.php/2014/11/install-real-ubuntu-os-usb-drive/)
@@ -187,7 +187,7 @@ ssh -Y remoteuser@remotehost dbus-launch -f gedit
 ssh -X remoteuser@remotehost dbus-launch gnome-terminal
 ```
 
-## certification 
+## certificates 
 Generating a RSA private key
 ```bash
 openssl req -new \
@@ -739,7 +739,7 @@ sudo cpan JSON
   taskopen 1
 ```
 
-## Terminator
+## terminator
 ### plugins
 * https://askubuntu.com/questions/700015/set-path-for-terminator-to-lookup-for-plugins
 * https://github.com/gstavrinos/terminator-jump-up
@@ -757,7 +757,8 @@ ls -la ~/.config/ranger/rifle.conf
 ext pdf, has okular,   X, flag f = okular -- "$@"
 ```
 
-## bluejeans installation ubuntu 18+
+## bluejeans 
+installation ubuntu 18+
 ```sh
 # retrieve all html anchors from url, html tags from url
 curl -X GET https://www.bluejeans.com/downloads | grep -o '<a .*href=.*>' | sed -e 's/<a /\n<a /g' | sed -e 's/<a .*href=['"'"'"]//' -e 's/["'"'"'].*$//' -e '/^$/ d' | grep rp
@@ -1215,4 +1216,28 @@ set realname = $IMAP_TITLE
 
 ```sh
 mutt
+```
+
+## flatpack 
+```sh
+sudo apt install flatpak
+
+# install flathub
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+# install from flathub application 
+flatpak install flathub com.sweethome3d.Sweethome3d
+
+# list of app/runtimes
+flatpak list
+# list of app only
+flatpak list --app
+
+# run application 
+flatpak run com.sweethome3d.Sweethome3d
+
+# update only one app/runtime
+flatpak update com.sweethome3d.Sweethome3d
+
+# update all
+flatpak update
 ```
