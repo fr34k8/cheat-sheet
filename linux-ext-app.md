@@ -23,8 +23,8 @@ locate rc.lua
 ```
 
 
-### gnome settings 
-#### gnome settings configuration customization adjuster
+## gnome settings 
+### gnome settings configuration customization adjuster
 ```sh
 sudo apt install dconf-editor
 ```
@@ -49,7 +49,7 @@ dconf-editor
 # []
 ```
 
-#### gnome list of settings
+### gnome list of settings
 ```sh
 # all gnome settings
 gsettings list-recursively 
@@ -157,7 +157,7 @@ else
 fi
 ```
 
-## gnome keyring
+### gnome keyring
 ```text
 raise InitError("Failed to unlock the collection!")
 ```
@@ -186,6 +186,20 @@ mv $PATH_TO_KEYRING_STORAGE "${PATH_TO_KEYRING_STORAGE}-original"
 ssh -Y remoteuser@remotehost dbus-launch -f gedit
 ssh -X remoteuser@remotehost dbus-launch gnome-terminal
 ```
+
+## tools
+- [ETL](www.talend.com)
+- [ETL](https://hekad.readthedocs.io)
+- web management - atomicproject.io, cockpit
+  * [install](https://cockpit-project.org/running#ubuntu)
+  * [guide](https://cockpit-project.org/guide/latest/)
+  * [after installation](https://127.0.0.1:9090)
+  * use your own user/password
+
+## virtual machines
+* [images](http://osboxes.org)
+* [app with infrastructure](https://bitnami.com/stacks)
+
 
 ## certificates 
 Generating a RSA private key

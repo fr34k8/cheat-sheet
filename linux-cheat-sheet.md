@@ -721,18 +721,9 @@ mount -t tmpfs tmpfs /mnt/my-ram -o size=1024M
 watch -n 60 'ls -la | grep archive'
 ```
 
-### execute command in case of changes watch file
+### execute/run command in case of changes, watch file
 ```
 ls *.txt | entr firefox 
-```
-
-### repeat last command
-```
-!!
-```
-### repeat last command with substring "flow" included into whole command line
-```
-!?flow
 ```
 
 ### execute in current dir, inline shell execution
@@ -3378,18 +3369,60 @@ or
 rm ~/.ssh/known_hosts
 ```
 
-## tools
-- [ETL](www.talend.com)
-- [ETL](https://hekad.readthedocs.io)
-- web management - atomicproject.io, cockpit
-  * [install](https://cockpit-project.org/running#ubuntu)
-  * [guide](https://cockpit-project.org/guide/latest/)
-  * [after installation](https://127.0.0.1:9090)
-  * use your own user/password
 
-## virtual machines
-* [images](http://osboxes.org)
-* [app with infrastructure](https://bitnami.com/stacks)
+
+## bash shortcuts for previous commands execution 
+
+| Command             | Meaning                                   |
+| ---------           | ---------                                 |
+| `!!`                | Last command                              |
+| `!$`                | Last argument of previous command         |
+| `!^`                | First argument of previous command        |
+| `!*`                | All arguments of previous command         |
+| `!:0`               | Command name                              |
+| `!:1` through `!:n` | Nth argument                              |
+| `!:1-2`             | Arguments 1 through 2                     |
+| `!:2-` or `!:2*`    | From argument 2 to end                    |
+| `!:0-`              | All words (command + arguments)           |
+| `!?flow`            | repeat last command with substring "flow" |
+
+| Modifier        | Meaning                                   |
+| ----------      | ---------                                 |
+| `!$:h`          | Head (directory part) - like `dirname`    |
+| `!$:t`          | Tail (filename) - like `basename`         |
+| `!$:r`          | Remove extension                          |
+| `!$:e`          | Extension only                            |
+| `!:p`           | Print command without executing (preview) |
+| `!:s/old/new/`  | Substitute first occurrence               |
+| `!:gs/old/new/` | Global substitution (all occurrences)     |
+
+Keybindings for these features
+- `Alt+1, Alt+2...Alt+5` - Print previous command with first N arguments
+- `Alt+\`` (backtick) - All but the last word
+- `Esc+.` - Insert last argument (works across lines)
+
+```bash
+echo foo bar baz
+$ echo !!        # echo foo bar baz
+$ echo !$        # baz
+$ echo !^        # foo
+$ echo !*        # foo bar baz
+$ echo !:2       # bar
+
+# Path manipulation
+% ls /usr/share/fonts/truetype
+% cd !$:h        # cd /usr/share/fonts (dirname)
+
+% wget http://nginx.org/download/nginx-1.4.7.tar.gz
+% tar zxvf !$:t  # extract nginx-1.4.7.tar.gz (basename)
+
+# Preview before executing
+% !!:p           # Print last command without running
+
+# Substitution
+% echo this that
+% !:s/is/e       # echo the that
+```
 
 ## mapping keys, keymap, assign actions to key
 ### show key codes
