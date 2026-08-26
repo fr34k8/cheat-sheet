@@ -29,6 +29,8 @@
 * [k3s](#k3s)
 * [microk8s](#microk8s)
 * [minikube](#minikube)
+* [kubernetes in browser](https://github.com/ngrok/webernetes)  
+  [examples of usage](https://ngrok.com/blog/probes)
 
 ## remote playground and examples
 * [playground](https://labs.play-with-k8s.com/)
