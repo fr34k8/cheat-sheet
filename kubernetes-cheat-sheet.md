@@ -106,6 +106,25 @@ pip install kubernetes
 6. A Kubelet on a node detects a pod with an assignment to itself and deploys the requested containers through the container runtime, for example, Docker. Each node watches the storage to see what pods it is assigned to run. The node takes necessary actions on the resources assigned to it such as to create or delete pods.
 7. Kubeproxy manages network traffic for the pods, including service discovery and load balancing. Kubeproxy is responsible for communication between pods that want to interact.
 
+---
+| Component          | Role                                           |
+|--------------------|------------------------------------------------|
+| API Server         | Front door, validates & processes all requests |
+| etcd               | Stores cluster state and configuration         |
+| Controller Manager | Keeps actual state in sync with desired state  |
+| Scheduler          | Assigns Pods to Nodes                          |
+| Cloud  Controller  | Connects to cloud provider APIs (optional)     |
+
+---
+| Step | What Happens              | Component Involved   |
+| ---  | ---                       | ---                  |
+| 1    | YAML sent                 | kubectl → API Server |
+| 2    | State stored              | API Server → etcd    |
+| 3    | Pod creation detected     | Controller Manager   |
+| 4    | Node selected for the Pod | Scheduler            |
+| 5    | Pod created, image pulled | kubelet on Node      |
+| 6    | Pod enters Running state  | kubelet + containerd |
+
 --- 
 ## bird eye view on installation
 ```mermaid
