@@ -815,3 +815,5 @@ graph TD
     %% Connection few-shot to ReAct
     FewShot -..-> ReActText
 ```
+## Skills, hooks, plugins
+* https://github.com/pickleshell/next-level-agent

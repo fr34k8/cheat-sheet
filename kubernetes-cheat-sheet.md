@@ -1283,7 +1283,83 @@ kubectl exec -it {name of a pod}  -- bash -c "echo hi > /path/to/output/test.txt
 * **Chaos Engineering:** Inject failures manually to verify system recovery.
 * **App Tiering:** Classify workloads (Tier 1 vs. 2) to prioritize resources.
 
-# Extending 
+# Extending / Extensions
+
+Here's an updated and expanded cheat sheet of Kubernetes-native control plane frameworks. I've verified the entries, added several new ones, and included **Crossplane** itself for context.
+
+---
+
+## Kubernetes Control Plane Frameworks – Cheat Sheet
+
+| Project                                   | URL                                                                                                                | Short Description                                                                                                                                                                                  |
+| :---                                      | :---                                                                                                               | :---                                                                                                                                                                                               |
+| **Crossplane**                            | [crossplane.io](https://www.crossplane.io)                                                                         | A graduated CNCF project that transforms a Kubernetes cluster into a **universal control plane** for managing cloud infrastructure, services, and applications declaratively via CRDs.             |
+| **kcp**                                   | [github.com/kcp-dev/kcp](https://github.com/kcp-dev/kcp)                                                           | A multi-tenant Kubernetes control plane that provides **logical clusters** (workspaces) and API aggregation for workloads across many clusters.                                                    |
+| **KubeVela**                              | [github.com/kubevela/kubevela](https://github.com/kubevela/kubevela)                                               | An **application delivery** control plane that simplifies deploying and managing modern applications across multiple environments with a consistent, developer-friendly abstraction.               |
+| **KubeVirt**                              | [github.com/kubevirt/kubevirt](https://github.com/kubevirt/kubevirt)                                               | Extends Kubernetes with CRDs to **manage and orchestrate virtual machines** alongside containers on the same cluster.                                                                              |
+| **Knative**                               | [github.com/knative/knative](https://github.com/knative/knative)                                                   | A **serverless workload** control plane that provides building blocks for deploying, running, and managing serverless, event-driven applications on Kubernetes.                                    |
+| **Cluster API (CAPI)**                    | [github.com/kubernetes-sigs/cluster-api](https://github.com/kubernetes-sigs/cluster-api)                           | A control plane for **Kubernetes cluster lifecycle management**, using CRDs to provision, upgrade, and operate clusters across any infrastructure.                                                 |
+| **kro (Kube Resource Orchestrator)**      | [github.com/awslabs/kro](https://github.com/awslabs/kro)                                                           | An AWS-backed open-source tool that turns a **graph of resources into a custom API** — similar to Crossplane but with a different abstraction model (no controller code required).                 |
+| **AWS Controllers for Kubernetes (ACK)**  | [github.com/aws-controllers-k8s](https://github.com/aws-controllers-k8s)                                           | A set of Kubernetes controllers that directly **manage AWS services** via CRDs, enabling Kubernetes-native AWS resource provisioning.                                                              |
+| **Azure Service Operator (ASO)**          | [github.com/Azure/azure-service-operator](https://github.com/Azure/azure-service-operator)                         | Allows you to **manage Azure resources** directly from Kubernetes using CRDs — similar to ACK but for Azure.                                                                                       |
+| **Google Config Connector**               | [github.com/GoogleCloudPlatform/k8s-config-connector](https://github.com/GoogleCloudPlatform/k8s-config-connector) | A Kubernetes-native operator for **managing GCP resources**, optimized for GKE with deep integration.                                                                                              |
+| **Kubernetes Federation (v2)**            | [github.com/kubernetes-sigs/federation-v2](https://github.com/kubernetes-sigs/federation-v2)                       | Provides a single control plane that can **span multiple Kubernetes clusters**, templatizing and propagating objects across clusters.                                                              |
+| **Open Service Broker / Service Catalog** | [openservicebrokerapi.org](https://www.openservicebrokerapi.org)                                                   | An API standard for brokers that provision and manage cloud services; the Kubernetes Service Catalog allows **dynamic provisioning** from a cluster.                                               |
+| **Klutch**                                | [klutch.io](https://klutch.io)                                                                                     | An open-source, Kubernetes-native **database control plane** that centralizes data service automation across Kubernetes and VMs, enabling developer self-service and platform governance.          |
+| **k0rdent**                               | [k0rdent.io](https://k0rdent.io)                                                                                   | A composable, Kubernetes-native **super control plane** for centrally deploying and managing mixed-workload edge clusters at scale using reusable service templates and Cluster API.               |
+| **Koreo**                                 | [koreo.dev](https://koreo.dev)                                                                                     | A "**meta-controller programming language**" and toolkit for building Kubernetes-based platforms and control planes, letting you program and compose controllers into cohesive workflows.          |
+| **Metacontroller**                        | [metacontroller.github.io](https://metacontroller.github.io)                                                       | A lightweight **controllers-as-a-service** framework that makes it easy to write and deploy custom Kubernetes controllers by handling the common API interaction boilerplate.                      |
+| **Kamaji**                                | [github.com/clastix/kamaji](https://github.com/clastix/kamaji)                                                     | A **Hosted Control Plane Manager** that runs Kubernetes control plane components (API server, scheduler, etc.) as Pods inside a management cluster, rather than on dedicated machines.             |
+| **Gardener**                              | [gardener.cloud](https://gardener.cloud)                                                                           | A Kubernetes-native system that **manages the full lifecycle of conformant Kubernetes clusters as a service** across many infrastructures, using hosted control planes running in "seed" clusters. |
+
+| Framework                | URL                                            | Description                                                                                       |
+| -----------              | -----                                          | -------------                                                                                     |
+| **Rook**                 | https://rook.io                                | Kubernetes-native storage orchestration - deploy Ceph, EdgeFS, Minio, CockroachDB directly in K8s |
+| **Operator Framework**   | https://operatorframework.io                   | Build Kubernetes Operators - extend K8s with domain-specific CRDs and controllers                 |
+| **KubeBuilder**          | https://book.kubebuilder.io                    | SDK for building Kubernetes APIs and Operators using Go                                           |
+| **Kopf**                 | https://kopf.readthedocs.io                    | Kubernetes Operator Pythonic Framework - build operators in Python                                |
+| **KEDA**                 | https://keda.sh                                | Kubernetes Event Autoscaling - scale K8s workloads based on event sources (K8s-native)            |
+| **Temporal**             | https://temporal.io                            | Workflow orchestration engine (runs in K8s) - manage complex distributed workflows                |
+| **Argo Workflows**       | https://argoproj.github.io/workflows           | Container-native workflow engine for Kubernetes                                                   |
+| **Kaito**                | https://github.com/microsoft/kaito             | AI Model Platform on Kubernetes - K8s-native ML workload provisioning                             |
+| **LitmusChaos**          | https://litmuschaos.io                         | Chaos engineering platform (runs on K8s) - inject and manage failures                             |
+| **Kubefuse**             | https://github.com/polarismesh/kubefuse        | Service mesh provisioning on K8s using eBPF                                                       |
+| **Knative**              | https://knative.dev                            | Serverless platform built on K8s - event-driven architecture                                      |
+| **Fluxcd**               | https://fluxcd.io                              | GitOps toolkit (K8s-native) - sync state from Git repos to K8s                                    |
+| **ArgoCD**               | https://argoproj.github.io/cd                  | GitOps continuous delivery (K8s-native control plane)                                             |
+| **Sealed Secrets**       | https://github.com/bitnami-labs/sealed-secrets | K8s native encryption - encrypt secrets in Git safely                                             |
+| **ExternalSecrets**      | https://external-secrets.io                    | Operator for managing secrets from external systems in K8s                                        |
+| **Cert-Manager**         | https://cert-manager.io                        | K8s-native TLS certificate management and automation                                              |
+| **Contour**              | https://projectcontour.io                      | Kubernetes ingress controller (CRD-based) for API gateway functionality                           |
+| **Emissary-Ingress**     | https://www.getambassador.io/docs/emissary     | Kubernetes ingress/API gateway using CustomResourceDefinitions                                    |
+| **Velero**               | https://velero.io                              | Kubernetes backup and disaster recovery (K8s operator)                                            |
+| **Vault Agent Injector** | https://www.vaultproject.io/docs/platform/k8s  | Kubernetes-native secrets injection operator                                                      |
+| **Kubeflow**             | https://www.kubeflow.org                       | MLOps platform (K8s-native) - train and deploy ML models                                          |
+| **Kyverno**              | https://kyverno.io                             | Policy engine for Kubernetes - manage security and compliance via CRDs                            |
+| **OpenStack Ironic**     | https://docs.openstack.org/ironic/latest       | Bare metal provisioning (K8s can orchestrate via operators)                                       |
+
+| Framework              | URL                                                  | Description                                                                                                               |
+| -----------            | -----                                                | -------------                                                                                                             |
+| **Flux**               | https://fluxcd.io                                    | GitOps toolkit for Kubernetes - declarative continuous deployment and infrastructure management via Git repositories      |
+| **ArgoCD**             | https://argoproj.github.io/cd                        | Declarative, GitOps continuous delivery tool for Kubernetes with UI for application sync and rollback                     |
+| **Helm**               | https://helm.sh                                      | Package manager for Kubernetes - templates and charts for deploying complex applications                                  |
+| **Kustomize**          | https://kustomize.io                                 | Kubernetes native configuration management - customize K8s manifests without templates                                    |
+| **Kratix**             | https://kratix.io                                    | Platform engineering framework - build internal developer platforms on Kubernetes (uses Crossplane as optional component) |
+| **CAPI**               | https://cluster-api.sigs.k8s.io                      | Cluster API - declarative Kubernetes-style APIs for managing clusters themselves                                          |
+| **Operator Framework** | https://operatorframework.io                         | Build Kubernetes Operators - extend K8s with domain-specific APIs and automation logic                                    |
+| **Karpenter**          | https://karpenter.sh                                 | Automatic node scaling and resource management for Kubernetes (alternative to Cluster Autoscaler)                         |
+| **Agones**             | https://agones.dev                                   | Kubernetes hosting for game servers - deploy and manage multiplayer games on K8s                                          |
+| **KubeFed**            | https://github.com/kubernetes-sigs/kubefed           | Kubernetes Cluster Federation - manage multiple K8s clusters as a single logical cluster                                  |
+| **Dapr**               | https://dapr.io                                      | Distributed application runtime - standardized APIs for building resilient microservices on K8s                           |
+| **Istio**              | https://istio.io                                     | Service mesh for Kubernetes - traffic management, security, and observability                                             |
+| **Linkerd**            | https://linkerd.io                                   | Lightweight service mesh - simpler alternative to Istio for observability and reliability                                 |
+| **Cilium**             | https://cilium.io                                    | eBPF-based networking and security for Kubernetes - network policies, load balancing, and observability                   |
+| **Vault**              | https://www.vaultproject.io                          | Secrets management and identity platform (runs on K8s) - centralized credential management                                |
+| **Prometheus**         | https://prometheus.io                                | Monitoring and metrics collection for Kubernetes workloads and infrastructure                                             |
+| **EKS Blueprints**     | https://aws-quickstart.github.io/cdk-eks-blueprints/ | AWS CDK for building complete EKS cluster environments and configurations                                                 |
+| **KubeFlow**           | https://www.kubeflow.org                             | MLOps platform for Kubernetes - deploying and managing machine learning workflows                                         |
+| **Tekton**             | https://tekton.dev                                   | Cloud-native CI/CD pipelines (serverless) - runs on K8s for building and deploying applications                           |
+
 
 ## Serverless
 * OpenFaas

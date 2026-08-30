@@ -8,6 +8,11 @@
 * [multy.dev](https://multy.dev/)
 * pulumi
 * [kcl config lang](https://www.kcl-lang.io/docs/user_docs/getting-started/intro)
+* [crossplane](https://www.crossplane.io/)
+  for parallel with Terraform usage:  
+  * leave in Terraform networking,roles,.... everything what has not so many changes
+  * use terraform result file as an input for crossplane
+  * use crossplane with frequently changed infrastructure ( DB, Buckets, MQ ... )
 
 ### language 
 * [documentation](https://www.terraform.io/docs/index.html)
