@@ -815,5 +815,16 @@ graph TD
     %% Connection few-shot to ReAct
     FewShot -..-> ReActText
 ```
+
+## Good prompt
+next parts should be covered ( F-schema in answer ):
+* who am I ( which role should be played by chat )
+* what is the goal ( what to create ? )
+  * important points to cover
+  * output format
+  * size/length of the answer
+* who is the recipient ( for whom to create the answer )
+
+
 ## Skills, hooks, plugins
 * https://github.com/pickleshell/next-level-agent
