@@ -74,3 +74,28 @@ TODO: install
 ### Azure Advisor & Service Health
 * **Azure Advisor:** For personalized best practices regarding optimization, security, and cost.
 * **Azure Service Health:** For monitoring active cloud issues, planned maintenance, and health advisories.
+
+### Microsoft Foundry
+* LLM
+* Doc service
+* Speech Service
+  * txt
+  * voice
+* Image service
+* Language service
+
+### ML Studio
+```mermaid
+flowchart LR
+
+Studio([ML Studio])
+WS([workspace])
+
+WS ---o Studio
+data[(data)]
+
+data -.-> J([ML job])
+schema ---o data
+pd[predict 
+   column] ---o data 
+```
