@@ -101,6 +101,9 @@ example
 `https://rawgit.com/[user]/[repository]/master/index.html`
 `https://rawgit.com/cherkavi/javascripting/master/d3/d3-bar-chart.html`
 
+### voice input
+* [offline voice recognizer](https://github.com/cjpais/handy)
+
 ### diagram drawing 
 #### [ascii graphics for drawing Architecture Diagrams in text](http://asciiflow.com/)  
 #### [uml, sysml, archimate tool](https://online.visual-paradigm.com/)
