@@ -132,8 +132,21 @@ pgcli postgresql://$PG_USER:$PG_PASSWORD@PG_HOST:$PG_PORT/$PG_DB --ssh-tunnel $D
 # \o [filename]                        | Send all query results to file.
 ```
 ```sql
-\copy (select sku from testaccount01_variant) to 'db-2.sku' csv header;
-COPY tablename TO '/tmp/output.csv' DELIMITER ',' CSV HEADER;
+\copy (select sku from testaccount01_variant) to '/my/own/path/to/db-2.sku' csv header;
+
+\COPY tablename TO '/tmp/output.csv' DELIMITER ',' CSV HEADER;
+```
+
+#### load file to database create table from csv
+```sql
+drop table temp_table;
+create table temp_table(
+    order_id numeric(100)
+);
+-- upload data with header 
+\copy temp_table FROM '/home/projects/temp/lost-numbers.list.unique.db.csv.order_id' CSV HEADER;
+
+select count(*) from temp_table;
 ```
 
 ### jdbc url
